@@ -1,12 +1,14 @@
 import expess from "express";
 import mango from "mongoose";
 import User from "./Models/UserLoginModel.js"; // yaha import kiya
+import cors from "cors";
 
 import bcrypt from "bcrypt";
 
 import createuser from "./Models/createUserModel.js";
 
 const app = expess();
+app.use(cors());
 app.use(expess.json());
 
 mango
@@ -65,18 +67,6 @@ app.post("/api/login", async (req, res) => {
 
   res.status(200).json({ message: "Login successful", userdetails: user });
 });
-
-// app.post("/api/Login", (req, res) => {
-
-//   const { email, password } = req.body;
-
-//   if(!email || !password) {
-//     return res.status(400).json({ error: "Email and password are required" });
-//   }
-
-//   let user =  await User
-
-// });
 
 const port = 10000;
 
